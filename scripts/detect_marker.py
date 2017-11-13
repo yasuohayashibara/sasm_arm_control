@@ -9,7 +9,7 @@ from cv_bridge import CvBridge, CvBridgeError
 from std_msgs.msg import Float32, Int8
 import numpy as np
 
-class dummy_reward:
+class detect_marker:
     def __init__(self):
         self.bridge = CvBridge()
         self.image_sub = rospy.Subscriber("/image_raw", Image, self.callback)
@@ -44,11 +44,11 @@ class dummy_reward:
         if rects:
             rect = rects[0]
             self.position = rect[0] + rect[2] / 2
-        self.position_pub.publish(self.position)
+            self.position_pub.publish(self.position)
 
 if __name__ == '__main__':
-    dr = dummy_reward()
-    rospy.init_node('dummy_reward', anonymous=True)
+    rospy.init_node('detect_marker', anonymous=True)
+    dm = detect_marker()
     try:
         rospy.spin()
     except KeyboardInterrupt:
