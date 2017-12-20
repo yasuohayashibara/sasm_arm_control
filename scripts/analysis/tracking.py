@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
+import sys
 import cv2
 import numpy as np
 from cv_bridge import CvBridge, CvBridgeError
 
 def main():
-
+    args = sys.argv
     # 動画の読み込み
-    cap = cv2.VideoCapture("MOV_2699.mp4")
+    cap = cv2.VideoCapture(args[1])
     bridge = CvBridge()
     time = 0
     f = open('data.csv', 'w')
