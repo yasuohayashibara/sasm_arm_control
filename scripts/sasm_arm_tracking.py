@@ -14,7 +14,7 @@ class sasm_arm_tracking:
 
     def callback(self, data):
         self.current_position = data.data;
-        self.target_position -= (self.current_position - 320) / 320 * 0.05;
+        self.target_position -= (self.current_position - 320) / 320 * 0.03;
         self.target_position_pub.publish(self.target_position)
 
 if __name__ == '__main__':
