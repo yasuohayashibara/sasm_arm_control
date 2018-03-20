@@ -13,8 +13,8 @@ class detect_marker:
     def __init__(self):
         self.bridge = CvBridge()
         self.image_sub = rospy.Subscriber("/image_raw", Image, self.callback)
-        self.position_pub = rospy.Publisher("position", Float32, queue_size=10)
-        self.position = 0
+        self.position_pub = rospy.Publisher("/position", Float32, queue_size=10)
+        self.position = 0.0
 
     def callback(self, data):
         try:
@@ -28,7 +28,7 @@ class detect_marker:
         s = hsv[:,:, 1]
         v = hsv[:,:, 2]
         mask = np.zeros(h.shape, dtype=np.uint8)
-        mask[(v > 245)] = 255
+        mask[(v > 235)] = 255
 #        image, contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
         contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         rects = []
@@ -43,7 +43,7 @@ class detect_marker:
         cv2.waitKey(1)
         if rects:
             rect = rects[0]
-            self.position = rect[0] + rect[2] / 2
+            self.position = float(rect[0]) + float(rect[2]) / 2.0
             self.position_pub.publish(self.position)
 
 if __name__ == '__main__':
