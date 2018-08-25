@@ -35,6 +35,7 @@ rosrun sasm_arm_control sasm_arm_control_by_laser.py
 ```
 rosrun sasm_arm_control sasm_arm_manual_control.py
 ```
+キーアサイン  
 'z': target_position += 0.001  
 'x': target_position -= 0.001  
 'a': target_position += 0.01  
