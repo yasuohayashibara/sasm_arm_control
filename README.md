@@ -1,5 +1,48 @@
 # sasm_arm_control
 
+### 実行
+
+１）サーボモータの起動
+```
+roslaunch kondo_driver kondo_driver.launch
+```
+
+２）アームを制御するためのプログラムを起動
+
+- アームの往復運動
+```
+rosrun sasm_arm_control sasm_arm_repetition.py
+```
+
+- 手先のカメラの画像に基づいて赤い対象物をトラッキング
+```
+rosrun sasm_arm_control detect_marker.py
+rosrun sasm_arm_control sasm_arm_tracking.py
+```
+
+もしくは，以下で一括して起動できる
+```
+roslaunch sasm_arm_control traking.launch
+```
+
+- 手先のレーザを照射した画像に基づいてアームを制御
+```
+rosrun sasm_arm_control detect_laser.py
+rosrun sasm_arm_control sasm_arm_control_by_laser.py
+```
+
+- アームを手動で制御
+```
+rosrun sasm_arm_control sasm_arm_manual_control.py
+```
+キーアサイン  
+'z': target_position += 0.001  
+'x': target_position -= 0.001  
+'a': target_position += 0.01  
+'s': target_position -= 0.01  
+'q': target_position += 0.1  
+'w': target_position -= 0.1  
+
 ### Requirement
 kondo_driver  
 https://github.com/citbrains/kondo_driver
