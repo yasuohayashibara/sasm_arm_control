@@ -1,0 +1,9 @@
+<launch>
+  <include file="$(find kondo_driver)/launch/kondo_driver.launch">
+  </include>
+  
+  <node pkg="sasm_arm_control" type="sasm_arm_manual_control.py" name="sasm_arm_manual_control" output="screen">
+  </node>
+
+</launch>
+
