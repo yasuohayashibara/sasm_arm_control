@@ -63,6 +63,13 @@ roslaunch sasm_arm_control sasm_arm_manual_control.launch
 kondo_driver  
 https://github.com/citbrains/kondo_driver
 
+ROS Kinetic (Ubuntu1604)
+
+uvc-cameraノード
+```
+ros-kinetic-uvc-camera
+```
+
 ### KondoのRS486アダプタを認識させるための処理
 
 以下のファイルを　/etc/udev/rules.d　に保存，再起動
