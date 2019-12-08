@@ -24,7 +24,8 @@ def main():
         v = hsv[:,:, 2]
         mask = np.zeros(h.shape, dtype=np.uint8)
         mask[(v > 200)] = 255
-        contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+#        contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        _, contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
         mu = cv2.moments(mask, False)
         if mu["m00"] != 0:

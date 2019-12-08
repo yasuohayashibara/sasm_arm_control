@@ -1,11 +1,7 @@
 <launch>
-  <include file="$(find kondo_driver)/launch/kondo_driver.launch">
-  </include>
-
   <node pkg="uvc_camera" type="uvc_camera_node" name="uvc_camera" output="screen">
-  <param name="width" type="int" value="640" />
-  <param name="height" type="int" value="480" />
-  <param name="fps" type="int" value="20" />
+  <param name="width" type="int" value="1280" />
+  <param name="height" type="int" value="720" />
   </node>
 
   <node pkg="sasm_arm_control" type="detect_laser.py" name="detect_laser" output="screen">

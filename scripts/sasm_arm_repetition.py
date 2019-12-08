@@ -17,7 +17,7 @@ class sasm_arm_repetition:
         self.index += 1
         if (self.index >= len(self.target_angles)):
             self.index = 0
-        self.target_position = self.target_angles[self.index] + 0.0
+        self.target_position = self.target_angles[self.index] - 1.732
         self.target_position_pub.publish(self.target_position)
 
 if __name__ == '__main__':

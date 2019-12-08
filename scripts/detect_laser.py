@@ -29,14 +29,21 @@ class detect_marker:
         v = hsv[:,:, 2]
         mask = np.zeros(h.shape, dtype=np.uint8)
         mask[(v > 235)] = 255
-#        image, contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-        contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        image, contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+#        contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         rects = []
+        maxRect = []
+        maxArea = 0;
         for contour in contours:
             approx = cv2.convexHull(contour)
             rect = cv2.boundingRect(approx)
-            if ((rect[2] > 3) & (rect[3] > 3)):
-                rects.append(np.array(rect))
+            area = rect[2] * rect[3]
+            if (rect[2] > 3) & (rect[3] > 3):
+                if area > maxArea:
+                    maxArea = area;
+                    maxRect = rect;
+        if maxArea > 0:
+            rects.append(np.array(maxRect))
         for rect in rects:
             cv2.rectangle(cv_image, tuple(rect[0:2]), tuple(rect[0:2] + rect[2:4]), (0, 0, 255), thickness=2)
         cv2.imshow("Image Object", cv_image)

@@ -1,7 +1,11 @@
 <launch>
-  <include file="$(find kondo_driver)/launch/kondo_driver.launch">
-  </include>
-  
+  <node pkg="uvc_camera" type="uvc_camera_node" name="uvc_camera" output="screen">
+    <param name="width" type="int" value="1280" />
+    <param name="height" type="int" value="720" />
+  </node>
+
+  <node pkg="sasm_arm_control" type="detect_laser.py" name="detect_laser" output="screen">
+  </node>
   <node pkg="sasm_arm_control" type="sasm_arm_repetition.py" name="sasm_arm_repetition" output="screen">
   </node>
 
